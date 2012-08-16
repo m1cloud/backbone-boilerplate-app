@@ -6,7 +6,6 @@ define([
 	not_found.Views.Index = Backbone.View.extend({
 		template: '404/index',
 		serialize: function() { return { page: this.options.page }; },
-		beforeRender: function() { console.log('404 beforeRender'); },
 		afterRender: function() { console.log('404 afterRender'); }
 	});
 	

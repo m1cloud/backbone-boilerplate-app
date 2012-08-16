@@ -25,10 +25,20 @@ define([
 		},
 
 		initialize: function() {
-			this.tweets = new Dashboard.Collection();
+			var self = this;
 			
 			this.layout = app.useLayout('main');
-			this.layout.render();
+			
+			this.tweets = new Dashboard.Collection();
+			this.appModel = new Dashboard.Model();
+			
+			this.appModel.fetch({ 
+				success: function(app_model) {
+					self.layout.setViews({
+						'#info_container': new Dashboard.Views.Info({model: app_model})
+					}).render();
+				}
+			});
 		}
 	});
 

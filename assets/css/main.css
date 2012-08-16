@@ -51,6 +51,15 @@ body { height: 100%; min-width: 960px; font-family: 'Helvetica Neue', 'Helvetica
 	background-image: -webkit-linear-gradient(rgba(63,66,72,1), rgba(41,43,46,1));
 }
 
+#main_content #info_container {
+	float: right;
+	font-size: 11px;
+	font-weight: bold;
+	color: #fff;
+	text-shadow: 0 1px 0 #000;
+	margin: 10px 10px 0 0;
+}
+
 /* main app sidebar */
 #sidebar { float: left; width: 219px; height: 100%; }
 

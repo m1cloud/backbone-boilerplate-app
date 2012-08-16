@@ -4,6 +4,11 @@ define([
 ], function(app, Backbone) {
 	var Dashboard = app.module();
 	
+	// widget model
+	Dashboard.Model = Backbone.Model.extend({
+		url: 'app_info.json' // this would obviously be a REST endpoint...
+	});
+	
 	// widget collection
 	Dashboard.Collection = Backbone.Collection.extend({
 		url: 'http://search.twitter.com/search.json?q=backbonejs&page=1&callback=?',
@@ -15,12 +20,17 @@ define([
 		tagName: 'li',
 		serialize: function() { return this.model.toJSON(); }
 	});
+	
+	// view to show some user info, once logged in..
+	Dashboard.Views.Info = Backbone.View.extend({
+		template: 'dashboard/app_info',
+		serialize: function() { return this.model.toJSON(); }
+	})
 		
 	// the main view, where widgets are loaded into
 	Dashboard.Views.Index = Backbone.View.extend({
 		template: 'dashboard/index',
 		beforeRender: function() {
-			console.log('Dashboard beforeRender');
 			var self = this;
 
 			this.collection.each(function(tweet) {
