@@ -1,5 +1,5 @@
 /*!
- * backbone.layoutmanager.js v0.6.3
+ * backbone.layoutmanager.js v0.6.4
  * Copyright 2012, Tim Branyen (@tbranyen)
  * backbone.layoutmanager.js may be freely distributed under the MIT license.
  */
@@ -608,8 +608,8 @@ var LayoutManager = Backbone.View.extend({
         }
 
         // If this view has already rendered, simply call the callback.
-        if (view.__manager__.hasRendered) {
-          view.__manager__.viewDeferred.then(function() {
+        if (view.__manager__.viewDeferred) {
+          return view.__manager__.viewDeferred.then(function() {
             done.call(view);
           });
         }
