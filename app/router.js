@@ -2,8 +2,9 @@ define([
 	'app',
 	'backbone',
 	'modules/dashboard',
-	'modules/404'
-], function(app, Backbone, Dashboard, NotFound) {
+	'modules/404',
+	'modules/widgets'
+], function(app, Backbone, Dashboard, NotFound, Widgets) {
 	var Router = Backbone.Router.extend({
 		routes: {
 			'dashboard': 'dashboard',
@@ -17,9 +18,9 @@ define([
 		dashboard: function() {
 			var self = this;
 			
-			this.tweets.fetch({ 
-				success: function(tweets) {
-					self.layout.setViews({ '#inner_content': new Dashboard.Views.Index({ collection: tweets }) }).render();
+			this.widgets.fetch({ 
+				success: function(widgets) {
+					self.layout.setView('#inner_content', new Dashboard.Views.Index({ collection: widgets })).render();
 				}
 			});
 		},
@@ -29,7 +30,7 @@ define([
 			
 			this.layout = app.useLayout('main');
 			
-			this.tweets = new Dashboard.Collection();
+			this.widgets = new Widgets.Collection();
 			this.appModel = new Dashboard.Model();
 			
 			this.appModel.fetch({ 
