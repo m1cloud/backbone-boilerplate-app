@@ -12,7 +12,7 @@ input::-moz-focus-inner { border: 0; } /* firefox button outline fix */
 /* container/wrapper
 ==============================================================================*/
 
-html { height: 100%; background: #61676e url(/assets/img/bg_slice.png); }
+html { height: 100%; background: #61676e url(../../img/bg_slice.png); }
 body { height: 100%; min-width: 960px; font-family: 'Helvetica Neue', 'Helvetica Neue LT', Helvetica, Arial, sans-serif; }
 #main_container {min-height: 100%;}
 #wrapper {position: relative; margin: 0 auto; padding-bottom: 52px;}  /* must be same height as the footer */

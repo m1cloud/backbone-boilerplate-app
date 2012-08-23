@@ -13,7 +13,7 @@ define([
 	Dashboard.Views.Info = Backbone.View.extend({
 		template: 'dashboard/app_info',
 		serialize: function() { return this.model.toJSON(); }
-	});
+	})
 		
 	// the main view, where widgets are loaded into
 	Dashboard.Views.Index = Backbone.View.extend({

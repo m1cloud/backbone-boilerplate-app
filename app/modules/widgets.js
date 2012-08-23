@@ -9,7 +9,7 @@ define([
 	// widget collection
 	Widgets.Collection = Backbone.Collection.extend({
 		model: Widgets.Model,
-		url: '/assets/api/app_widgets.json' // this would obviously be a REST endpoint...
+		url: 'app_widgets.json' // this would obviously be a REST endpoint...
 	});
 	
 	Widgets.Views.widget_1 = Backbone.View.extend({
