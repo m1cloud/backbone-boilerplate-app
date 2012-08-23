@@ -84,7 +84,6 @@ module.exports = function(grunt) {
 			files: [
 				'assets/css/h5bp_reset.css',
 				'assets/css/font-face.css',
-				'assets/css/index.css',
 				'assets/css/main.css'
 			],
 			
@@ -140,7 +139,7 @@ module.exports = function(grunt) {
 			files: { 'favicon.ico': 'favicon.ico' },
 			
 			debug: {
-				host: '127.0.0.1', port: 8080, // Running apache on 80 - lets use 8080...
+				host: '127.0.0.1', port: 8081, // Running apache on 80 - lets use 8081...
 				
 				// Ensure the favicon is mapped correctly.
 				files: { 'favicon.ico': 'favicon.ico' },
@@ -154,7 +153,7 @@ module.exports = function(grunt) {
 			},
 			
 			release: {
-				host: '127.0.0.1', port: 8080, // Running apache on 80 - lets use 8080...
+				host: '127.0.0.1', port: 8081, // Running apache on 80 - lets use 8081...
 				
 				// Ensure the favicon is mapped correctly.
 				files: { 'favicon.ico': 'favicon.ico' },
