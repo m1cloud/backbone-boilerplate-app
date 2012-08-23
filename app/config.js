@@ -11,6 +11,6 @@ require.config({
 	shim: { // using a shim allows us to load non-amd libs, but need to be configured below...
 		backbone: { deps: ['lodash', 'jquery'], exports: 'Backbone' },
 		handlebars: { exports: 'Handlebars' },
-		layoutmanager: ['backbone'], // Backbone.LayoutManager depends on Backbone.
+		layoutmanager: ['backbone'] // Backbone.LayoutManager depends on Backbone.
 	}
 });

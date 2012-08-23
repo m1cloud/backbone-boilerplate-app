@@ -18,7 +18,7 @@ define([
 		dashboard: function() {
 			var self = this;
 			
-			this.widgets.fetch({ 
+			this.widgets.fetch({
 				success: function(widgets) {
 					self.layout.setView('#inner_content', new Dashboard.Views.Index({ collection: widgets })).render();
 				}
