@@ -24,19 +24,23 @@ define([
 		
 		paths: {
 			layout: 'app/templates/layouts/',
-			template: 'app/templates/'
+			template: 'app/templates/' 
 		},
 		
 		fetch: function(path) {
-			var done = this.async();
+			var done;
 			path = path + '.html';
-
-			if (JST[path]) { return Handlebars.template(JST[path]); }
-			
-			// Otherwise seek out the template asynchronously.
-			$.ajax({ url: app.root + path }).then(function(contents) {
-				done(JST[path] = Handlebars.compile(contents));
-			});
+		
+			if (JST[path]) {
+				return Handlebars.template(JST[path]);
+			} else {
+				done = this.async();
+				
+				// Otherwise seek out the template asynchronously.
+				return $.ajax({ url: app.root + path }).then(function(contents) {
+					done(JST[path] = Handlebars.compile(contents));
+				});
+			}
 		}		
 	});
 		
