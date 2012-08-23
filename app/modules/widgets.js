@@ -13,18 +13,15 @@ define([
 	});
 	
 	Widgets.Views.widget_1 = Backbone.View.extend({
-		serialize: function() { return this.model.toJSON(); },
-		afterRender: function() { console.log('widget_1 afterRender'); }
+		serialize: function() { return this.model.toJSON(); }
 	});	
 	
 	Widgets.Views.widget_2 = Backbone.View.extend({
-		serialize: function() { return this.model.toJSON(); },
-		afterRender: function() { console.log('widget_2 afterRender'); }
+		serialize: function() { return this.model.toJSON(); }
 	});	
 	
 	Widgets.Views.widget_3 = Backbone.View.extend({
-		serialize: function() { return this.model.toJSON(); },
-		afterRender: function() { console.log('widget_3 afterRender'); }
+		serialize: function() { return this.model.toJSON(); }
 	});	
 	
 	

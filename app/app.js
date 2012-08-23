@@ -5,11 +5,13 @@ define([
 	
 	// load the app-core libraries here
 	'handlebars',
-	'layoutmanager',
-], function($, _, Backbone, Handlebars) {
+	'modules/bootstrapped',
+	'layoutmanager'
+], function($, _, Backbone, Handlebars, BootstrappedModel) {
 	// Provide a global location to place configuration settings and module creation.
 	var app = {
-		root: '/'
+		root: '/',
+		app_model: BootstrappedModel // we boostrap our app model here
 	};
 	
 	// Localize or create a new JavaScript Template object.

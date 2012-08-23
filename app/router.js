@@ -31,15 +31,11 @@ define([
 			this.layout = app.useLayout('main');
 			
 			this.widgets = new Widgets.Collection();
-			this.appModel = new Dashboard.Model();
+			this.app_model = new Dashboard.Model(app.app_model); // bootstrapped!
 			
-			this.appModel.fetch({ 
-				success: function(app_model) {
-					self.layout.setViews({
-						'#info_container': new Dashboard.Views.Info({model: app_model})
-					}).render();
-				}
-			});
+			this.layout.setViews({
+				'#info_container': new Dashboard.Views.Info({model: this.app_model})
+			}).render();
 		}
 	});
 

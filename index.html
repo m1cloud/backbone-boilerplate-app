@@ -9,5 +9,13 @@
 <body>
 	<div id="main_container"></div>
 	<script data-main="/app/config" src="/assets/js/libs/require.js"></script>
+	<script>
+		define('modules/bootstrapped', function() {
+			return {
+				// here contains our model for bootstrapped data
+				'name': 'Josh Crawford'
+			};
+		});
+	</script>
 </body>
 </html>

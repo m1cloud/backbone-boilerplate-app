@@ -29,8 +29,7 @@ define([
 					template: 'widgets/' + widget.get('template')
 				}));
 			});
-		},
-		afterRender: function() { console.log('Dashboard afterRender'); }
+		}
 	});
 	
 	return Dashboard;
