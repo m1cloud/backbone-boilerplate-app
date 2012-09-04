@@ -5,6 +5,7 @@ define([
 	
 	// load the app-core libraries here
 	'handlebars',
+	'hb_helpers',
 	'modules/bootstrapped',
 	'layoutmanager'
 ], function($, _, Backbone, Handlebars, BootstrappedModel) {
