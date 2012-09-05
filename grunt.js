@@ -184,7 +184,7 @@ module.exports = function(grunt) {
 			
 			paths: {
 				// Swaps out handlebars for the runtime, which is much smaller and faster!
-				handlebars: 'assets/js/libs/handlebars.runtime-1.0.0.beta.6'
+				handlebars: '../assets/js/libs/handlebars.runtime-1.0.0.beta.6'
 			}
 		},
 		
