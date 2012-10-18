@@ -5,74 +5,79 @@ define([
 	
 	// load the app-core libraries here
 	'handlebars',
-	'hb_helpers',
-	'modules/bootstrapped',
 	'layoutmanager'
-], function($, _, Backbone, Handlebars, BootstrappedModel) {
+], function($, _, Backbone, Handlebars) {
 	// Provide a global location to place configuration settings and module creation.
 	var app = {
 		root: '/',
-		app_model: BootstrappedModel // we boostrap our app model here
+		isIE: /msie/i.test(navigator.userAgent) && !window.opera, // handy!
+		isLowerIE8: (document.all && !document.querySelector) ? true: false,
+		apiURL: 'assets/api/'
 	};
 	
 	// Localize or create a new JavaScript Template object.
 	var JST = window.JST = window.JST || {};
-
+	
 	// Configure LayoutManager with Backbone Boilerplate defaults.
 	Backbone.LayoutManager.configure({
-		// Allow LayoutManager to augment Backbone.View.prototype.
 		manage: true,
-		
-		paths: {
-			layout: 'app/templates/layouts/',
-			template: 'app/templates/' 
-		},
-		
+		prefix: 'app/templates/',
 		fetch: function(path) {
 			var done;
 			path = path + '.html';
-		
-			if (JST[path]) {
-				return Handlebars.template(JST[path]);
-			} else {
+			
+			// If the template has not been loaded yet, then load.
+			if (!JST[path]) {
 				done = this.async();
 				
-				// Otherwise seek out the template asynchronously.
 				return $.ajax({ url: app.root + path }).then(function(contents) {
-					done(JST[path] = Handlebars.compile(contents));
+					JST[path] = Handlebars.compile(contents);
+					JST[path].__compiled__ = true;
+					done(JST[path]);
 				});
 			}
+			
+			// If the template hasn't been compiled yet, then compile.
+			if (!JST[path].__compiled__) {
+				JST[path] = Handlebars.template(JST[path]);
+				JST[path].__compiled__ = true;
+			}
+			
+			return JST[path];			
 		}		
 	});
-		
+
 	// Mix Backbone.Events, modules, and layout management into the app object.
 	return _.extend(app, {
 		// Create a custom object with a nested Views object.
 		module: function(additionalProps) {
 			return _.extend({ Views: {} }, additionalProps);
 		},
-		
+	
 		// Helper for using layouts.
-		useLayout: function(name) {
-			if (this.layout) {
-				if (this.layout.options.template === name) {
-					return this.layout;
-				} else {
-					this.layout.remove();
-				}
+		useLayout: function(name, options) {
+			if (this.layout && this.layout.options.template === name) {
+				return this.layout;
 			}
-		
+			
 			// Create a new Layout.
-			this.layout = new Backbone.Layout({
+			this.layout = new Backbone.LayoutView(_.extend({
 				template: name,
 				className: 'layout ' + name,
-				id: 'layout'
-			});
-		
-			// Insert into the DOM.
-			$('#main_container').empty().append(this.layout.el);
+				id: 'layout',
+				views: {
+					'#content': new Backbone.LayoutView({
+						template: 'page'
+					})
+				}
+			}, options));
 			
-			// Return the reference, for chainability.
+			// Insert into the DOM.
+			$(this.layout.el).hide();
+			$('#main_container').empty().append(this.layout.el);
+			$('#main_container').prepend('<div class="app_spinner spinner"><img class="spinner" src="/assets/img/spinner_24x24_white.gif" /><p>Loading App…</p></div>');
+			
+			// don't render yet...
 			return this.layout;
 		}
 	}, Backbone.Events);

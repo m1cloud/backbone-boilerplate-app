@@ -3,19 +3,14 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title></title>
 	<link rel="stylesheet" href="/assets/css/index.css">
 </head>
 <body>
 	<div id="main_container"></div>
-	<script data-main="/app/config" src="/assets/js/libs/require.js"></script>
-	<script>
-		define('modules/bootstrapped', function() {
-			return {
-				// here contains our model for bootstrapped data
-				'name': 'Josh Crawford'
-			};
-		});
+	<script type="text/javascript">
+		// IE - once again, you ruin everything...
+		(function(){if(typeof console=="undefined"){console={log:function(){}}}})();
 	</script>
+	<script data-main="/app/config" src="/assets/js/libs/require.js"></script>
 </body>
 </html>

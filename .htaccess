@@ -9,6 +9,7 @@ RewriteEngine on
 #RewriteRule ^assets/(.*)$ assets/$1 [NC,L]
 
 # Map resources to release distribution
+RewriteRule ^assets/css/fonts/(.*)$ assets/css/fonts/$1 [NC,L]
 RewriteRule ^app/(.*)$ dist/release/$1 [NC,L]
 RewriteRule ^assets/js/libs/(.*)$ dist/release/$1 [NC,L]
 RewriteRule ^assets/css/(.*)$ dist/release/$1 [NC,L]
@@ -19,4 +20,5 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_URI} !index
 
 # Redirect remaining requests to the index.html file
-RewriteRule (.*) index.html [NC,L]
+#RewriteRule (.php) $1 [NC,L]
+RewriteRule (.*) index.php [NC,L]

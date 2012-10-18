@@ -1,0 +1,23 @@
+[
+	{
+		"title": "Widget 1",
+		"template": "widget_1",
+		"id": "widget_1",
+		"type": "main_widget",
+		"classes": "medium_widget"
+	},
+	{
+		"title": "Widget 2",
+		"template": "widget_2",
+		"id": "widget_2",
+		"type": "main_widget",
+		"classes": "medium_widget"
+	},
+	{
+		"title": "Widget 3",
+		"template": "widget_3",
+		"id": "widget_3",
+		"type": "main_widget",
+		"classes": "medium_widget"
+	}
+]

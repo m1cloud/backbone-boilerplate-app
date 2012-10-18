@@ -1,0 +1,41 @@
+@import 'stylus/nib/vendor.styl';
+@import 'stylus/nib/gradients.styl';
+
+
+
+#widget_list > li {
+	width: 707px;
+	height: 200px;
+	float: left;
+	background-color: #fff;
+	border: 1px #bbb solid;
+	position: relative;
+	margin: 16px 0 0 16px;
+	
+	border-radius(4px);
+}
+
+#main_widget div.spinner { margin: 0; }
+
+#main_widget header {
+	border-bottom: 1px #bbb solid;
+	background: linear-gradient(#f7f7f7, #e2e2e2);
+}
+
+#main_widget header .inner_header {
+	height: 35px;
+	border: 1px #ebebeb solid;
+}
+
+#main_widget header, #main_widget header .inner_header {
+	border-radius(4px 4px 0 0);
+}
+
+#main_widget header h3.widget_title {
+	float: left;
+	font-size: 14px;
+	font-weight: bold;
+	color: #5a5a5a;
+	text-shadow: 0 1px 0 #fff;
+	padding: 11px 0 0 14px;
+}

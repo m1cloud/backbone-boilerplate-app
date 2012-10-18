@@ -581,6 +581,31 @@
     toJSON: function(options) {
       return this.map(function(model){ return model.toJSON(options); });
     },
+	
+	
+	//**upsert** takes models and does an update-or-insert operation on them
+	//So models that already exist are updated, and new models are added
+	upsert: function (models, options) {
+		var self = this;
+		options || (options = {});
+		models = _.isArray(models) ? models.slice() : [models];
+	
+	
+	   var addModels = [];
+		_.each(models, function (newModel) {
+			var n = self._prepareModel(newModel, options);
+			var existingModel = self.get(n.id);
+			if (existingModel) {
+				existingModel.set(n, options);
+			} else {
+				addModels.push(n);
+			}
+		});
+	
+		if (!_.isEmpty(addModels)) {
+			self.add(addModels, options);
+		}
+	},	
 
     // Add a model, or list of models to the set. Pass **silent** to avoid
     // firing the `add` event for every new model.
@@ -756,7 +781,10 @@
       var collection = this;
       var success = options.success;
       options.success = function(resp, status, xhr) {
-        collection[options.add ? 'add' : 'reset'](collection.parse(resp, xhr), options);
+        //collection[options.add ? 'add' : 'reset'](collection.parse(resp, xhr), options);
+		
+		// upsert functionality
+		collection[options.add ? 'add' : (options.upsert ? "upsert" : 'reset')](collection.parse(resp, xhr), options);
         if (success) success(collection, resp);
       };
       options.error = Backbone.wrapError(options.error, collection, options);
