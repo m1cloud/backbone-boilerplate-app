@@ -37,7 +37,6 @@ define([
 			
 			self.widgets.fetch({
 				success: function(widgets) {
-					console.log(widgets)
 					self.page_layout.setViews({
 						'#inner_content': new Dashboard.Views.Index({ collection: self.widgets })
 					}).render().done(self.render_complete);
